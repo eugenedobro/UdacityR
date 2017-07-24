@@ -1,2 +1,2 @@
 # UdacityR
-Udacity Course on Data Analysis woth R
+Udacity Course on Data Analysis with R
