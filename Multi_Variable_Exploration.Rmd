@@ -12,7 +12,7 @@ ggplot(aes(x = age, y = friend_count),
 data = subset(pf, !is.na(gender))) + 
 geom_line(aes(color = gender), stat = 'summary', fun.y = mean)
 ```
-# Write code to create a new data frame,# called 'pf.fc_by_age_gender', that contains# information on each age AND gender group.
+### Write code to create a new data frame, called 'pf.fc_by_age_gender', that contains# information on each age AND gender group.
 ```{r Task 1}
 pf <- read.delim('pseudo_facebook.tsv')
 pf.fc_by_age_gender <- pf %>%  
@@ -33,7 +33,7 @@ data = pf.fc_by_age_gender) +
 geom_line(aes(color = gender))
 ```
 ***
-### Ratio Plot# Plot the ratio of the female to male median# friend counts using the data frame# pf.fc_by_age_gender.wide.# Add a horizontal line to the plot with# a y intercept of 1, which will be the# base line. Use the parameter# linetype in geom_hline to make the# line dashed.
+### Ratio Plot Plot the ratio of the female to male median friend counts using the data frame pf.fc_by_age_gender.wide. Add a horizontal line to the plot with a y intercept of 1, which will be the base line. Use the parameter linetype in geom_hline to make the line dashed.
 ```{r Ratio Plot}
 library(reshape2)
 pf.fc_by_age_gender.wide <- dcast(pf.fc_by_age_gender,  
@@ -46,18 +46,23 @@ data = pf.fc_by_age_gender.wide) +
 geom_line() + 
 geom_hline(yintercept = 1, alpha = 0.2, linetype = 2)
 ```
-***# Create a variable called year_joined# in the pf data frame using the variable# tenure and 2014 as the reference year.
+***
+### Create a variable called year_joined# in the pf data frame using the variable tenure and 2014 as the reference year.
 ### Third Quantitative Variable
 ```{r Third Quantitative Variable}
 pf$year_joined <- floor(2014 - pf$tenure/365)
 ```
 ***
-### Cut a Variable# Create a new variable in the data frame# called year_joined.bucket by using# the cut function on the variable year_joined.# You need to create the following buckets for the# new variable, year_joined.bucket#        (2004, 2009]#        (2009, 2011]#        (2011, 2012]#        (2012, 2014]
+### Cut a Variable Create a new variable in the data frame called year_joined.bucket by using the cut function on the variable year_joined. You need to create the following buckets for the new variable, year_joined.bucket        
+### (2004, 2009]        
+### (2009, 2011]        
+### (2011, 2012]       
+### (2012, 2014]
 ```{r Cut a Variable}
 pf$year_joined.bucket <- cut(pf$year_joined, breaks = c(2004, 2009, 2011, 2012, 2014))
 ```
 ***
-### Plotting it All Together# Create a line graph of friend_count vs. age# so that each year_joined.bucket is a line# tracking the median user friend_count across# age. This means you should have four different# lines on your plot.
+### Plotting it All Together Create a line graph of friend_count vs. age so that each year_joined.bucket is a line tracking the median user friend_count across age. This means you should have four different lines on your plot.
 ```{r Plotting it All Together}
 table(pf$year_joined.bucket, useNA = 'ifany')
 ggplot(aes(x = age, y = friend_count), 
@@ -79,7 +84,7 @@ with(subset(pf, pf$tenure >= 1), summary(friend_count / tenure))
 ```
 ***
 ### Friendships Initiated
-# Create a line graph of mean of friendships_initiated per day (of tenure)# vs. tenure colored by year_joined.bucket.
+### Create a line graph of mean of friendships_initiated per day (of tenure) vs. tenure colored by year_joined.bucket.
 ```{r Friendships Initiated}
 ggplot(aes(x = tenure, y = friendships_initiated / tenure), 
 data = subset(pf, pf$tenure >= 1)) + 
@@ -121,7 +126,7 @@ yo <- transform(yo, all.purchases = strawberry+blueberry+pina.colada+plain+mixed
 ```
 ***
 ### Prices over Time# Create a scatterplot of price vs time.
-# This will be an example of a time series plot.
+###  This will be an example of a time series plot.
 ```{r Prices over Time}ggplot(aes(x = time, y = price), data = yo) +  geom_jitter(alpha = 1/2, shape = 21, fill= "blue")```
 ***
 ### Looking at Samples of Households
